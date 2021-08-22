@@ -3,22 +3,19 @@ package projects.triangles;
 import inputParameters.DataInput;
 import inputParameters.DataInputFromConsole;
 
-public class RunApplication implements Message{
+public class RunApplication implements MessagesTriangles {
     protected DataInput input = new DataInputFromConsole();
     private final TriangleStorage storage = new TriangleStorage();
 
     public void run(){
-        boolean run = true;
-        while (run){
-            System.out.println(ENTER_PARAMETERS);
-            System.out.println(INPUT_TEMPLATE);
-            String enteredString = input.getParameters();
-            ParserStringToTriangle parser = new ParserStringToTriangle(enteredString);
+        boolean isRun = true;
+        while (isRun){
+            TriangleBuilder parser = new TriangleBuilder();
             Triangle triangle = parser.getTriangle();
             if (triangle != null) {
                 storage.addTriangle(triangle);
             }
-            run = isContinue();
+            isRun = isContinue();
         }
         System.out.println(storage.toString());
     }

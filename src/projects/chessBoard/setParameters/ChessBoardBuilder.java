@@ -4,7 +4,7 @@ import inputParameters.DataInput;
 import inputParameters.DataInputFromConsole;
 import projects.chessBoard.message.Message;
 import projects.chessBoard.modelBoard.ChessBoard;
-import validator.Validator;
+import projects.chessBoard.validator.Validator;
 
 public class ChessBoardBuilder implements Message {
     protected DataInput dataInput = new DataInputFromConsole();
@@ -18,7 +18,7 @@ public class ChessBoardBuilder implements Message {
     protected ChessBoard setChessBordParameters() {
         int height = 0;
         int width = 0;
-        if (enteredParameters.length == 0) {
+        if (enteredParameters.length != 2) {
             System.out.println(ENTER_VALUES);
             System.out.println(CHESS_BOARD_INPUT_SCHEME);
             height = setParameter(HEIGHT);

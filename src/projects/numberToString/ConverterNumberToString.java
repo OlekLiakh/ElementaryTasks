@@ -25,10 +25,10 @@ public class ConverterNumberToString implements Messages {
                 return stringBuilder.toString();
             }
         }
-        int trillion = (int) (number / Math.pow(10, 12));
-        int billion = (int) (number / Math.pow(10, 9));
-        int million = (int) (number / Math.pow(10, 6));
-        int thousand = (int) (number / Math.pow(10, 3));
+        int trillion = (int) ((number / Math.pow(10, 12)));
+        int billion = (int) ((number / Math.pow(10, 9))%1000);
+        int million = (int) ((number / Math.pow(10, 6))%1000);
+        int thousand = (int) ((number / Math.pow(10, 3))%1000);
         int hundreds = (int) (number % Math.pow(10, 3));
 
         if (trillion != 0) {
@@ -36,25 +36,16 @@ public class ConverterNumberToString implements Messages {
             stringBuilder.append(" ").append(TRILLION).append(" ");
         }
         if (billion != 0) {
-            int number = billion % 1000;
-            if (number != 0) {
-                buildString(number);
+                buildString(billion);
                 stringBuilder.append(" ").append(BILLION).append(" ");
-            }
         }
         if (million != 0) {
-            int number = million % 1000;
-            if (number != 0) {
-                buildString(number);
+                buildString(million);
                 stringBuilder.append(" ").append(MILLION).append(" ");
-            }
         }
         if (thousand != 0) {
-            int number = thousand % 1000;
-            if (number != 0) {
-                buildString(number);
+                buildString(thousand);
                 stringBuilder.append(" ").append(THOUSAND).append(" ");
-            }
         }
         if (hundreds != 0) {
             buildString(hundreds);
@@ -65,7 +56,9 @@ public class ConverterNumberToString implements Messages {
     private void buildString(int number) {
         stringBuilder.append(getHundreds(number));
         if ((stringBuilder.length() != 0) && (number % 100 != 0)) {
-            stringBuilder.append(AND).append(" ");
+            stringBuilder
+                    .append(AND)
+                    .append(" ");
         }
         stringBuilder.append(getTens(number));
     }

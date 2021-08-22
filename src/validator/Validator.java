@@ -1,20 +1,22 @@
 package validator;
 
-import projects.chessBoard.message.Message;
+import messages.Messages;
 
+import java.util.List;
 
-public class Validator implements Message {
+public abstract class Validator <T extends Messages> {
 
-    public boolean isValid(String enteredValue) {
-        try {
-            int number = Integer.parseInt(enteredValue);
-            return number > 0;
-        } catch (NumberFormatException nfe){
-            System.out.println(ENTERED_AN_INCORRECT_VALUE);
+    protected T messages;
+
+    public Validator() {
+    }
+
+    public  abstract boolean isParametersValid(List<String> parameters);
+
+    public boolean isNumberParametersValid(List<String> parameters, int neededParameters) throws NumberFormatException{
+        if(parameters.size()!=neededParameters){
+            throw new NumberFormatException (messages.ENTERED_AN_INCORRECT_VALUE);
         }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        return false;
+        return true;
     }
 }
