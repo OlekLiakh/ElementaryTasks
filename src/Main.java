@@ -1,5 +1,4 @@
-import inputParameters.DataInput;
-import inputParameters.DataInputFromConsole;
+import inputParameters.DataEnterFromConsole;
 import messages.Messages;
 
 public class Main implements Messages {
@@ -17,7 +16,7 @@ public class Main implements Messages {
 
     private static int getNumber() {
         while (true) {
-            DataInput dataInput = new DataInputFromConsole();
+            DataEnterFromConsole dataInput = new DataEnterFromConsole();
             try {
                 int numberProgram = Integer.parseInt(dataInput.getParameters());
                 return numberProgram;

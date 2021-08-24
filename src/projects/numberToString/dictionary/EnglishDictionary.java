@@ -2,10 +2,6 @@ package projects.numberToString.dictionary;
 
 public class EnglishDictionary extends Dictionary {
 
-    public EnglishDictionary() {
-        initDictionary();
-    }
-
     @Override
     protected void initDictionary() {
         dictionary.put(0, "zero");

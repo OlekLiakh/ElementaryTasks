@@ -1,46 +1,78 @@
 package projects.fileParser;
 
-import inputParameters.DataInput;
-import inputParameters.DataInputFromConsole;
-import inputParameters.DataInputFromFile;
+import inputParameters.DataEnterFromConsole;
+import inputParameters.DataEnterFromFile;
 
-public class FileParser {
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 
-    public static void main(String[] args) {
+public class FileParser implements MessageFileParser{
 
-        if (args.length != 2 || args.length != 3) {
-            System.out.println("If you want to count the number of occurrences of a string in a text file.");
-            System.out.println("Enter parameters by scheme: <file path> <string to count>");
-            System.out.println("If you want to replace a string to another in file");
-            System.out.println("Enter parameters by scheme: <file path> <search string> <replacement string>");
-            DataInput input = new DataInputFromConsole();
-            String enteredParameters = input.getParameters();
-            args = enteredParameters.split(" ");
-        }
-        if (args.length == 2) {
-            DataInputFromFile dataInputFromFile = new DataInputFromFile(args[0]);
-            String enteredData = "";
-            try {
-                enteredData = dataInputFromFile.getParameters();
-            } catch (Exception e){
-                e.printStackTrace();
-                System.exit(0);
+    private String[] args;
+    private DataEnterFromConsole input = new DataEnterFromConsole();
+
+    public FileParser(String[] args) {
+        this.args = args;
+    }
+
+    public void run() {
+        boolean getParams = true;
+        while (getParams) {
+            if (args.length == 2) {
+                String path = args[0];
+                String stringForCount = args[1];
+                int count = getCount(path, stringForCount);
+                System.out.printf("String %s occurs %d times", stringForCount, count);
+                getParams = false;
             }
-            Counter counter = new Counter();
-            counter.getCount(enteredData,args[1]);
-        }
-        if (args.length==3){
-            DataInputFromFile dataInputFromFile = new DataInputFromFile(args[0]);
-            String enteredData = "";
-            try {
-                enteredData = dataInputFromFile.getParameters();
-            } catch (Exception e){
-                e.printStackTrace();
-                System.exit(0);
+            if (args.length == 3) {
+                String path = args[0];
+                String searchString = args[1];
+                String replaceString = args[2];
+                rewriteStringInFile(path, searchString, replaceString);
+                getParams = false;
             }
-            enteredData.replaceAll(args[1],args[2]);
+            if (getParams) {
+                args = getParameters();
+            }
         }
     }
 
+    private int getCount(String path, String stringToCount) {
+        DataEnterFromFile dataEnterFromFile = new DataEnterFromFile(path);
+        String textFromFile = "";
+        try {
+            textFromFile = dataEnterFromFile.getParameters();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(0);
+        }
+        Counter counter = new Counter();
+        int count = counter.getCount(textFromFile, stringToCount);
+        return count;
+    }
 
+    private void rewriteStringInFile(String path, String searchString, String replaceString) {
+        try {
+            DataEnterFromFile dataEnterFromFile = new DataEnterFromFile(path);
+            String dataFromFile = dataEnterFromFile.getParameters();
+            String changedString = dataFromFile.replaceAll(searchString, replaceString);
+            FileWriter writer = new FileWriter(path, false);
+            writer.write(changedString);
+            writer.flush();
+        } catch (FileNotFoundException exception) {
+            System.out.println("The file can't be find");
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    private String[] getParameters() {
+        System.out.println(ENTER_VALUES);
+        System.out.println(INPUT_SCHEME);
+        String enteredParameters = input.getParameters();
+        args = enteredParameters.split(" ");
+        return args;
+    }
 }

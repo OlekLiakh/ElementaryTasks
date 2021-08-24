@@ -8,7 +8,6 @@ public class ConverterSchemeChessBoardToString {
     public ConverterSchemeChessBoardToString(ChessBoard chessBoard) {
         this.chessBoard = chessBoard;
     }
-
     public String getScheme() {
         StringBuilder stringBuilder = new StringBuilder();
         for(int i =0; i < chessBoard.getHeight(); i++)

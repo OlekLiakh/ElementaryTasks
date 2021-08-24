@@ -1,10 +1,10 @@
 package projects.happyTickets;
 
-import inputParameters.DataInputFromConsole;
+import inputParameters.DataEnterFromConsole;
 
 public class DataInput implements Messages {
 
-    protected inputParameters.DataInput input = new DataInputFromConsole();
+    protected DataEnterFromConsole input = new DataEnterFromConsole();
 
     public DataInput() {
     }
