@@ -1,13 +1,12 @@
 package projects.chessBoard.setParameters;
 
-import inputParameters.DataInput;
-import inputParameters.DataInputFromConsole;
-import projects.chessBoard.message.Message;
+import inputParameters.DataEnterFromConsole;
+import projects.chessBoard.message.MessageChessBoard;
 import projects.chessBoard.modelBoard.ChessBoard;
-import validator.Validator;
+import projects.chessBoard.setParameters.validator.Validator;
 
-public class ChessBoardBuilder implements Message {
-    protected DataInput dataInput = new DataInputFromConsole();
+public class ChessBoardBuilder implements MessageChessBoard {
+    protected DataEnterFromConsole dataInput = new DataEnterFromConsole();
     protected Validator validator = new Validator();
     private String[] enteredParameters;
 
@@ -20,7 +19,7 @@ public class ChessBoardBuilder implements Message {
         int width = 0;
         if (enteredParameters.length == 0) {
             System.out.println(ENTER_VALUES);
-            System.out.println(CHESS_BOARD_INPUT_SCHEME);
+            System.out.println(INPUT_SCHEME);
             height = setParameter(HEIGHT);
             width = setParameter(WIDTH);
         } else {
@@ -41,7 +40,7 @@ public class ChessBoardBuilder implements Message {
             valueChessBoardSide = Integer.parseInt(value);
         } else {
             System.out.println(INCORRECT_ONE_SIDE_VALUE + nameChessboardSide);
-            System.out.println(CHESS_BOARD_INPUT_SCHEME);
+            System.out.println(INPUT_SCHEME);
             valueChessBoardSide = setParameter(nameChessboardSide);
         }
         return valueChessBoardSide;
@@ -56,13 +55,13 @@ public class ChessBoardBuilder implements Message {
             if (isSuccessful) {
                 valueChessBoardSide = Integer.parseInt(input);
             } else {
-                System.out.println(CHESS_BOARD_INPUT_SCHEME);
+                System.out.println(INPUT_SCHEME);
                 System.out.println(ENTER_VALUES);
             }
         }
         return valueChessBoardSide;
     }
-    public ChessBoard getChessBoard() {
+    public ChessBoard getChessBoard(){
         ChessBoard chessBoard = setChessBordParameters();
         return chessBoard;
     }

@@ -1,20 +1,19 @@
 package validator;
 
-import projects.chessBoard.message.Message;
+import java.util.Objects;
+import java.util.function.Predicate;
 
+@FunctionalInterface
+public interface Validator <T> {
 
-public class Validator implements Message {
+    boolean isDataValid(T value);
 
-    public boolean isValid(String enteredValue) {
-        try {
-            int number = Integer.parseInt(enteredValue);
-            return number > 0;
-        } catch (NumberFormatException nfe){
-            System.out.println(ENTERED_AN_INCORRECT_VALUE);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        return false;
+    default boolean validation(T value, Predicate<T> predicate){
+        return predicate.test(value);
+    }
+
+    default Validator<T> and(Validator<? super T> other) {
+        Objects.requireNonNull(other);
+        return (value) -> isDataValid(value) && other.isDataValid(value);
     }
 }

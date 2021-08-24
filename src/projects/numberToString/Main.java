@@ -5,7 +5,7 @@ import projects.numberToString.dictionary.EnglishDictionary;
 
 public class Main {
     public static void main(String[] args) {
-        ParseStringToNumber inputNumber = new ParseStringToNumber(args);
+        EnterParameters inputNumber = new EnterParameters(args);
         Dictionary dictionary = new EnglishDictionary();
         ConverterNumberToString converter = new ConverterNumberToString(inputNumber.getNumber(), dictionary);
         System.out.println(converter.convertNumberToString());

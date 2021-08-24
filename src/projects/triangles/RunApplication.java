@@ -1,10 +1,9 @@
 package projects.triangles;
 
-import inputParameters.DataInput;
-import inputParameters.DataInputFromConsole;
+import inputParameters.DataEnterFromConsole;
 
 public class RunApplication implements Message{
-    protected DataInput input = new DataInputFromConsole();
+    protected DataEnterFromConsole input = new DataEnterFromConsole();
     private final TriangleStorage storage = new TriangleStorage();
 
     public void run(){

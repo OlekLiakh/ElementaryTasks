@@ -1,29 +1,65 @@
 package projects.numberSequence;
 
+import inputParameters.DataEnterFromConsole;
+
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class NumberSequence {
-    public static void main(String[] args) {
+public class NumberSequence implements MessageNumberSequence {
 
-        long stringLength = 10L;
-        Double enteredNumbersSquare = 36D;
+    DataEnterFromConsole input = new DataEnterFromConsole();
+    String[] inputtedParameters;
+    int startNumber = 1;
+    long sequenceLength;
+    Double inputtedNumbersSquare;
 
-        double number = Math.sqrt(enteredNumbersSquare);
-        long startNumber;
-        if (enteredNumbersSquare.equals(Math.pow((long) number, 2))) {
-            startNumber = (long) number;
-        } else {
-            startNumber = (long) number + 1;
+    public NumberSequence(String[] args) {
+        inputtedParameters = args;
+    }
+
+    public boolean setInputtedParameters() {
+        boolean isValid = false;
+        while(!isValid) {
+            System.out.println(ENTER_VALUES);
+            System.out.println(INPUT_SCHEME);
+            inputtedParameters = input.getParameters().split(" ");
+            isValid = validateParameters(inputtedParameters);
         }
+        return true;
+    }
 
-        String result = Stream.iterate(startNumber, m->m+1)
-                .limit(stringLength)
-                .map(x -> x.toString()+", ")
-                .collect(Collectors.joining());
-        result = result.substring(0,result.length()-2);
+    public boolean validateParameters(String[] inputtedParameters) {
+        try {
+            if (inputtedParameters.length != 2) {
+                throw new IllegalArgumentException(ENTERED_AN_INCORRECT_VALUE);
+            }
+            sequenceLength = Long.parseLong(inputtedParameters[0]);
+            if (sequenceLength <= 0) {
+                throw new IllegalArgumentException("Sequence length can't be less or equals zero");
+            }
+            inputtedNumbersSquare = Double.parseDouble(inputtedParameters[1]);
+            if (inputtedNumbersSquare < 0) {
+                throw new IllegalArgumentException("Sequence length can't be less than zero");
+            }
+            return true;
+        } catch (IllegalArgumentException exception) {
+            System.out.println(ENTERED_AN_INCORRECT_VALUE + exception.getMessage());
+            return false;
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return false;
+        }
+    }
 
-//        Output
-        System.out.println(result);
+
+    public String getNumberSequence(String[] args) {
+        if (validateParameters(args)) {
+            String numberSequence = Stream.iterate(startNumber, m -> m + 1)
+                    .limit(sequenceLength)
+                    .map(x -> x.toString() + ", ")
+                    .collect(Collectors.joining());
+         return numberSequence = numberSequence.substring(0, numberSequence.length() - 2);
+        }
+        return "";
     }
 }

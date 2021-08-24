@@ -1,6 +1,8 @@
 package projects.numberToString;
 
-public interface Messages {
+import messages.Messages;
+
+public interface MessagesEnglish extends Messages {
     String INCORRECT_VALUE = "Entered an incorrect value";
     String INPUT_NUMBER_TEMPLATE = "For convert integer to string enter one an integer number less, then quadrillion";
     String AND = "and";

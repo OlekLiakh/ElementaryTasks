@@ -1,8 +1,6 @@
 package projects.triangles;
 
-
-import inputParameters.DataInput;
-import inputParameters.DataInputFromConsole;
+import inputParameters.DataEnterFromConsole;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +9,7 @@ import java.util.stream.Stream;
 
 public class ParserStringToTriangle implements Message {
 
-    protected DataInput input = new DataInputFromConsole();
+    protected DataEnterFromConsole input = new DataEnterFromConsole();
     private String enteredString;
 
     public ParserStringToTriangle(String enteredString) {
