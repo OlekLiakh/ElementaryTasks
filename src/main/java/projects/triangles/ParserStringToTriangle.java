@@ -63,7 +63,7 @@ public class ParserStringToTriangle implements Message {
         return listEnteredParameters;
     }
 
-    public Double validateSide(String enteredValue, int sideNumber) {
+    private Double validateSide(String enteredValue, int sideNumber) {
         while (true) {
             try {
                 double parsedValue = Double.parseDouble(enteredValue);

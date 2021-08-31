@@ -1,6 +1,5 @@
-package validator;
+package main;
 
-import java.util.Objects;
 import java.util.function.Predicate;
 
 @FunctionalInterface
@@ -11,4 +10,5 @@ public interface Validator <T> {
     default boolean validation(T value, Predicate<T> predicate){
         return predicate.test(value);
     }
+
 }

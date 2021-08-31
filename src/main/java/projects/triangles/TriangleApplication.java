@@ -2,20 +2,20 @@ package projects.triangles;
 
 import inputParameters.EnterDataFromConsole;
 
-public class RunApplication implements Message{
+public class TriangleApplication implements Message{
     protected EnterDataFromConsole input = new EnterDataFromConsole();
     private final TriangleStorage storage = new TriangleStorage();
 
-    public void run(){
-        boolean run = true;
-        while (run){
+    public void execute(){
+        boolean isContinue = true;
+        while (isContinue){
             String enteredString = input.getParameters(ENTER_PARAMETERS, INPUT_TEMPLATE);
             ParserStringToTriangle parser = new ParserStringToTriangle(enteredString);
             Triangle triangle = parser.getTriangle();
             if (triangle != null) {
                 storage.addTriangle(triangle);
             }
-            run = isContinue();
+            isContinue = isContinue();
         }
         System.out.println(storage.toString());
     }

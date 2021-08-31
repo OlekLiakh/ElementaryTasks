@@ -4,7 +4,7 @@ import inputParameters.EnterDataFromConsole;
 import projects.chessBoard.message.MessageChessBoard;
 import projects.chessBoard.modelBoard.ChessBoard;
 import projects.chessBoard.setParameters.validator.ValidatorChessBoard;
-import validator.Validator;
+import main.Validator;
 
 public class ChessBoardInitializer implements MessageChessBoard {
     private EnterDataFromConsole dataInput = new EnterDataFromConsole();

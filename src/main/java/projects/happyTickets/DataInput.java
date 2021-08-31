@@ -10,7 +10,6 @@ public class DataInput implements Messages {
     }
 
     public int[] getParameters() {
-        System.out.println(ENTER_PARAMETERS);
         int firstTicketNumber = getParameter(ENTER_PARAMETERS_FIRST_TICKET);
         int secondTicketNumber = getParameter(ENTER_PARAMETERS_SECOND_TICKET);
         int[] mas = {firstTicketNumber, secondTicketNumber};
