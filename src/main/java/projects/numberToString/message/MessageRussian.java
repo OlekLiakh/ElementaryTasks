@@ -1,12 +1,12 @@
 package projects.numberToString.message;
 
-import main.Message;
+import main.elementaryTasksAPI.Message;
 
 public class MessageRussian extends Message {
     private final String ENTER_VALUES = "Введите число";
     private final String INPUT_SCHEME = "Число должно быть в диапазоне +/-квадрилион";
     private final String INCORRECT_VALUE = "Введены неверные данные";
-    private final String EXCEPTION = "Что-то пошло не так. Введите число снова.";
+    private final String EXCEPTION = "Что-то пошло не так. Мы уже работаем над устранением проблемы.";
     private final String OUT_OF_RANGE = "Число не в пределах диапазоне";
     private final String MINUS = "минус";
     private final String TRILLION = "триллион";

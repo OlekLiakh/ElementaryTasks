@@ -1,16 +1,13 @@
 package projects.numberToString;
 
-import main.Application;
-import main.GetParameters;
-import main.RunnerApplication;
-import main.inputOutput.input.InputDataFromConsole;
-import main.inputOutput.output.OutputDataToConsole;
-import main.parserStringToNumber.ParserStringToLong;
+import main.elementaryTasksAPI.RunnerApplicationFromConsole;
+import main.elementaryTasksAPI.inputOutput.input.InputDataFromConsole;
+import main.elementaryTasksAPI.inputOutput.output.OutputDataToConsole;
 
-public class RunnerNumberToStringFromConsole extends RunnerApplication{
+public class RunnerNumberToStringFromConsole extends RunnerApplicationFromConsole {
 
     public RunnerNumberToStringFromConsole(String[] args){
-        super(args, new NumberToStringApplication(),
+        super(args, new NumberToStringApplicationFromConsole(),
                 new GetParametersNumberToString(new InputDataFromConsole()),
                 new OutputDataToConsole());
     }

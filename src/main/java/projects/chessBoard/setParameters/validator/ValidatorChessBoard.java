@@ -1,6 +1,6 @@
 package projects.chessBoard.setParameters.validator;
 
-import main.Validator;
+import main.elementaryTasksAPI.Validator;
 
 public class ValidatorChessBoard implements Validator<Integer> {
 

@@ -1,14 +1,19 @@
 package projects.fibonacciSequence;
 
-import messages.Messages;
+import main.elementaryTasksAPI.Message;
+import main.elementaryTasksAPI.Validator;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class FibonacciSequence implements Messages {
+public class FibonacciSequence {
 
     private long startRange;
     private long endRange;
+    private String fibonacciSequenceString;
+    private Validator<Long> validator = new ValidatorFibonacci();
+    private Message message = new MessageFibonacciSequence();
+    private FibonacciSequence(){}
 
     public FibonacciSequence (long [] rangeSequence){
         if (rangeSequence[0] <= rangeSequence[1]) {
@@ -20,12 +25,20 @@ public class FibonacciSequence implements Messages {
         }
     }
 
-    public String getFibonacciSequence() {
-        String fibonacciSequence = buildFibonacciSequence(startRange, endRange);
-        return fibonacciSequence;
+    public String getFibonacciSequence() throws IllegalArgumentException{
+        if(fibonacciSequenceString==null) {
+            createFibonacciSequenceString();
+        }
+        return  fibonacciSequenceString;
     }
-
-    private String buildFibonacciSequence(long startRange, long endRange) {
+    private void createFibonacciSequenceString() throws IllegalArgumentException{
+        if(validator.isDataValid(startRange)&&validator.isDataValid(endRange)){
+            fibonacciSequenceString = buildFibonacciSequence();
+        }else {
+            throw new IllegalArgumentException();
+        }
+    }
+    private String buildFibonacciSequence() {
         String fibonacciSequence = Stream.iterate(new Long[]{0L, 1L},
                 x -> new Long[]{x[1], x[0] + x[1]})
                 .map(x -> x[0])

@@ -1,6 +1,6 @@
 package projects.happyTickets;
 
-import main.inputOutput.input.InputDataFromConsole;
+import main.elementaryTasksAPI.inputOutput.input.InputDataFromConsole;
 
 public class DataInput implements Messages {
 

@@ -1,5 +1,4 @@
 package projects.numberToString.converter;
-import main.Message;
 
 public abstract class ConverterNumberToString {
 

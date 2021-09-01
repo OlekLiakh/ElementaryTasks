@@ -1,15 +1,15 @@
-package projects.numberToString;
+package main.runMainApplication;
 
 import main.elementaryTasksAPI.GetParameters;
 import main.elementaryTasksAPI.inputOutput.input.InputData;
 
 import java.io.IOException;
 
-public class GetParametersNumberToString extends GetParameters{
+public class GetParametersMain extends GetParameters {
 
     private String enteredValue;
 
-    public GetParametersNumberToString(InputData input) {
+    public GetParametersMain(InputData input) {
         super(input);
     }
 

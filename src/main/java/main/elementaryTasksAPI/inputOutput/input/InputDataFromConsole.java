@@ -1,4 +1,4 @@
-package main.inputOutput.input;
+package main.elementaryTasksAPI.inputOutput.input;
 
 import java.io.BufferedReader;
 import java.io.IOException;

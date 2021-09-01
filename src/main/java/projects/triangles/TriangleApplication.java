@@ -1,6 +1,6 @@
 package projects.triangles;
 
-import main.inputOutput.input.InputDataFromConsole;
+import main.elementaryTasksAPI.inputOutput.input.InputDataFromConsole;
 
 import java.io.IOException;
 

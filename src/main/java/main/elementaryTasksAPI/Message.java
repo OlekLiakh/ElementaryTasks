@@ -1,4 +1,4 @@
-package main;
+package main.elementaryTasksAPI;
 
 public abstract class Message {
 

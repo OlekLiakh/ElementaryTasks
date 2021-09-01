@@ -1,4 +1,4 @@
-package main.inputOutput.output;
+package main.elementaryTasksAPI.inputOutput.output;
 
 public class OutputDataToConsole extends OutputData {
 

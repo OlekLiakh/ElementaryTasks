@@ -1,7 +1,7 @@
 package projects.fileParser;
 
-import main.inputOutput.input.InputDataFromConsole;
-import main.inputOutput.input.InputDataFromFile;
+import main.elementaryTasksAPI.inputOutput.input.InputDataFromConsole;
+import main.elementaryTasksAPI.inputOutput.input.InputDataFromFile;
 
 import java.io.FileNotFoundException;
 import java.io.FileWriter;

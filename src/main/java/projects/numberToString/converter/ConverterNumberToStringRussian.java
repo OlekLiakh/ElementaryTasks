@@ -1,7 +1,6 @@
 package projects.numberToString.converter;
 
-import main.Message;
-import main.Validator;
+import main.elementaryTasksAPI.Validator;
 import projects.numberToString.ValidatorNumberToString;
 import projects.numberToString.converter.dictionary.Dictionary;
 import projects.numberToString.converter.dictionary.RussianDictionary;

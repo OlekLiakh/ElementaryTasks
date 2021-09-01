@@ -1,16 +1,17 @@
 package projects.numberToString;
 
-import main.Application;
-import main.parserStringToNumber.ParserStringToLong;
+import main.elementaryTasksAPI.ApplicationFromConsole;
+import main.elementaryTasksAPI.parserStringToNumber.ParserStringToLong;
 import projects.numberToString.converter.ConverterNumberToString;
 import projects.numberToString.converter.ConverterNumberToStringRussian;
 import projects.numberToString.message.MessageRussian;
 
 
-public class NumberToStringApplication extends Application {
+public class NumberToStringApplicationFromConsole extends ApplicationFromConsole {
 
     private Long number;
-    public NumberToStringApplication(){
+
+    public NumberToStringApplicationFromConsole() {
         super(new ParserStringToLong(), new MessageRussian());
 
     }
@@ -25,8 +26,7 @@ public class NumberToStringApplication extends Application {
 
     @Override
     public void parseParameters(String enteredValue) throws IllegalArgumentException {
-        parser.parseParameters(enteredValue);
-        number = (Long) parser.getParsedParameter();
+        number = (Long) parser.parseParameters(enteredValue);
     }
 
 }
