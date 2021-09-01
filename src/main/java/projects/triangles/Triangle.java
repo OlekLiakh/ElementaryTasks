@@ -39,12 +39,4 @@ public class Triangle implements Comparable<Triangle> {
     public String getName() {
         return name;
     }
-
-    public double getSide1() {
-        return side1;
-    }
-
-    public double getSide3() {
-        return side3;
-    }
 }

@@ -1,6 +1,6 @@
 package projects.numberToString;
 
-import validator.Validator;
+import main.Validator;
 
 import java.util.function.Predicate;
 

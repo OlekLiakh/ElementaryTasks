@@ -1,10 +1,10 @@
 package projects.fibonacciSequence;
 
-import inputParameters.EnterDataFromConsole;
+import main.inputOutput.input.InputDataFromConsole;
 
 public class ParserEnteredParameters implements MessagesFibonacciSequence {
 
-    protected EnterDataFromConsole input = new EnterDataFromConsole();
+    protected InputDataFromConsole input = new InputDataFromConsole();
     protected ValidatorFibonacci validator = new ValidatorFibonacci();
 
     private String[] parameters;
@@ -24,15 +24,14 @@ public class ParserEnteredParameters implements MessagesFibonacciSequence {
                 } else if (parameters.length == 2) {
                     isSuccessful = setRange(parameters[0], parameters[1]);
                 } else {
+                    System.out.println(ENTER_VALUES);
+                    System.out.println(INPUT_SCHEME);
                     parameters = input
-                            .getParameters(ENTER_VALUES, INPUT_SCHEME)
+                            .getParameters()
                             .split(";");
                 }
             } catch (NumberFormatException exception) {
                 System.out.println(ENTERED_AN_INCORRECT_VALUE);
-                parameters = input
-                        .getParameters(ENTER_VALUES, INPUT_SCHEME)
-                        .split(";");
             } catch (Exception e) {
                 System.out.println(EXCEPTION);
             }

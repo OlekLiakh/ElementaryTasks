@@ -1,13 +1,15 @@
 package projects.chessBoard.setParameters;
 
-import inputParameters.EnterDataFromConsole;
+import main.inputOutput.input.InputDataFromConsole;
 import projects.chessBoard.message.MessageChessBoard;
 import projects.chessBoard.modelBoard.ChessBoard;
 import projects.chessBoard.setParameters.validator.ValidatorChessBoard;
-import validator.Validator;
+import main.Validator;
+
+import java.io.IOException;
 
 public class ChessBoardInitializer implements MessageChessBoard {
-    private EnterDataFromConsole dataInput = new EnterDataFromConsole();
+    private InputDataFromConsole dataInput = new InputDataFromConsole();
     protected Validator<Integer> validator = new ValidatorChessBoard();
     private String[] enteredParameters;
 
@@ -26,12 +28,14 @@ public class ChessBoardInitializer implements MessageChessBoard {
                     width = setParameter(enteredParameters[1], WIDTH);
                     isSuccessful = true;
                 } else {
-                    throw new IllegalArgumentException(ENTERED_AN_INCORRECT_VALUE);
+                    System.out.println(ENTERED_AN_INCORRECT_VALUE);
+                    System.out.println(ENTER_VALUES);
+                    System.out.println(INPUT_SCHEME);
+                    String enteredValue = dataInput.getParameters();
+                    enteredParameters = enteredValue.split(" ");
                 }
-            } catch (IllegalArgumentException exception) {
+            } catch (IllegalArgumentException |IOException exception) {
                 System.out.println(exception.getMessage());
-                String enteredValue = dataInput.getParameters(ENTER_VALUES, INPUT_SCHEME);
-                enteredParameters = enteredValue.split(" ");
             }
         }
         return new ChessBoard(height, width);

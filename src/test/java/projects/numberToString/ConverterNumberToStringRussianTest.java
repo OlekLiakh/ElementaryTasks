@@ -1,4 +1,4 @@
-package numberToString;
+package projects.numberToString;
 
 import org.testng.annotations.Test;
 import projects.numberToString.converter.ConverterNumberToStringRussian;
@@ -44,7 +44,7 @@ public class ConverterNumberToStringRussianTest {
 
     @Test
     public void testConvertNumberToStringTwoDigitNumber() {
-        long digit = 21;
+        long digit = 21L;
         String expected = "двадцать один";
 
         String actualResult = converter.convertNumberToString(digit);
@@ -54,7 +54,7 @@ public class ConverterNumberToStringRussianTest {
 
     @Test
     public void testConvertNumberToStringThreeDigitNumber() {
-        long digit = 143;
+        long digit = 143L;
         String expected = "сто сорок три";
 
         String actualResult = converter.convertNumberToString(digit);
@@ -63,8 +63,18 @@ public class ConverterNumberToStringRussianTest {
     }
 
     @Test
+    public void testConvertNumberToString_TwelveThousandTwelve() {
+        long digit = 12012L;
+        String expected = "двенадцать тыс€ч двенадцать";
+
+        String actualResult = converter.convertNumberToString(digit);
+
+        assertEquals(actualResult, expected);
+    }
+
+    @Test
     public void testConvertNumberToString_OneMillion_Thousands_TwoDigitNumberEndsOnOne_NotEleven() {
-        long digit = 1031000;
+        long digit = 1031000L;
         String expected = "один миллион тридцать одна тыс€ча";
 
         String actualResult = converter.convertNumberToString(digit);
@@ -73,8 +83,8 @@ public class ConverterNumberToStringRussianTest {
     }
 
     @Test
-    public void testConvertNumberToString_TwoMillion_Thousand_TwoDigitNumberEndsOnTwo_NotTwelve() {
-        long digit = 2042000;
+    public void ConvertNumberToString_TwoMillion_Thousand_TwoDigitNumberEndsOnTwo_NotTwelve() {
+        long digit = 2042000L;
         String expected = "два миллиона сорок две тыс€чи";
 
         String actualResult = converter.convertNumberToString(digit);
@@ -84,7 +94,7 @@ public class ConverterNumberToStringRussianTest {
 
     @Test
     public void testConvertNumberToString_ThreeMillion_Thousand_TwoDigitNumberEndsOnThreeOrFour_NotThirteenAndFourteen() {
-        long digit = 3053000;
+        long digit = 3053000L;
         String expected = "три миллиона п€тьдес€т три тыс€чи";
 
         String actualResult = converter.convertNumberToString(digit);
@@ -134,7 +144,7 @@ public class ConverterNumberToStringRussianTest {
 
     @Test
     public void testConvertNumberToString_10456090() {
-        long digit = 104560090;
+        long digit = 104560090L;
         String expected = "сто четыре миллиона п€тьсот шестьдес€т тыс€ч дев€носто";
 
         String actualResult = converter.convertNumberToString(digit);

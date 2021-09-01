@@ -22,14 +22,14 @@ public class TriangleStorage {
                 counter += 1;
                 stringBuilder.append(counter)
                         .append(". ")
-                        .append(toStringByFormat(triangle))
+                        .append(triangleToStringByFormat(triangle))
                         .append("\n");
             }
         }
         return stringBuilder.toString();
     }
 
-    protected String toStringByFormat(Triangle triangle) {
+    protected String triangleToStringByFormat(Triangle triangle) {
         DecimalFormat formatter = new DecimalFormat("###.##");
         String formatDoubleToString = formatter.format(triangle.getArea());
         String output = String.format("[%s]: %s ñm", triangle.getName(), formatDoubleToString);

@@ -1,13 +1,13 @@
-package inputParameters;
+package main.inputOutput.input;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 
-public class DataEnterFromFile {
+public class InputDataFromFile extends InputData {
 
     String path;
 
-    public DataEnterFromFile(String path) {
+    public InputDataFromFile(String path) {
         this.path = path;
     }
 

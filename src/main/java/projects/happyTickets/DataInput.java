@@ -1,16 +1,15 @@
 package projects.happyTickets;
 
-import inputParameters.EnterDataFromConsole;
+import main.inputOutput.input.InputDataFromConsole;
 
 public class DataInput implements Messages {
 
-    protected EnterDataFromConsole input = new EnterDataFromConsole();
+    protected InputDataFromConsole input = new InputDataFromConsole();
 
     public DataInput() {
     }
 
     public int[] getParameters() {
-        System.out.println(ENTER_PARAMETERS);
         int firstTicketNumber = getParameter(ENTER_PARAMETERS_FIRST_TICKET);
         int secondTicketNumber = getParameter(ENTER_PARAMETERS_SECOND_TICKET);
         int[] mas = {firstTicketNumber, secondTicketNumber};
@@ -20,7 +19,9 @@ public class DataInput implements Messages {
     private int getParameter(String message) {
         while (true) {
             try {
-                String enteredString = input.getParameters(message, INPUT_TEMPLATE);
+                System.out.println(message);
+                System.out.println(INPUT_TEMPLATE);
+                String enteredString = input.getParameters();
                 int ticketNumber = Integer.parseInt(enteredString);
                 if (ticketNumber < 0 || ticketNumber>=1000000) {
                     throw new NumberFormatException();

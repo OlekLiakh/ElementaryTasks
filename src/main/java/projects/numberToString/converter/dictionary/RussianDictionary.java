@@ -1,4 +1,4 @@
-package projects.numberToString.dictionary;
+package projects.numberToString.converter.dictionary;
 
 public class RussianDictionary extends Dictionary {
 

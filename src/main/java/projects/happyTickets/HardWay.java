@@ -23,7 +23,6 @@ public class HardWay {
         long countHard = Stream.iterate(firstTicket, m -> m + 1)
                 .limit(lastTicket-firstTicket+1)
                 .filter(hardWayCounter::test)
-                .peek(System.out::println)
                 .count();
         return (int)countHard;
     }

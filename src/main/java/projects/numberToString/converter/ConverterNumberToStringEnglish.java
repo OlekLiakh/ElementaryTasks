@@ -2,8 +2,8 @@ package projects.numberToString.converter;
 
 import projects.numberToString.message.MessagesEnglish;
 import projects.numberToString.ValidatorNumberToString;
-import projects.numberToString.dictionary.Dictionary;
-import projects.numberToString.dictionary.EnglishDictionary;
+import projects.numberToString.converter.dictionary.Dictionary;
+import projects.numberToString.converter.dictionary.EnglishDictionary;
 
 public class ConverterNumberToStringEnglish extends ConverterNumberToString implements MessagesEnglish {
     private ValidatorNumberToString validator = new ValidatorNumberToString();
@@ -23,11 +23,11 @@ public class ConverterNumberToStringEnglish extends ConverterNumberToString impl
             stringBuilder.append(MINUS).append(" ");
             number = Math.abs(number);
         }
-        int classTrillion = (int) (number / Math.pow(10, 12)); //0
-        int classBillion = (int) (number / Math.pow(10, 9)) % 1000; //0
-        int classMillion = (int) (number / Math.pow(10, 6)) % 1000; //110
-        int classThousand = (int) (number / Math.pow(10, 3)) % 1000; //010
-        int classHundreds = (int) (number % Math.pow(10, 3)); //101
+        int classTrillion = (int) (number / Math.pow(10, 12));
+        int classBillion = (int) (number / Math.pow(10, 9)) % 1000;
+        int classMillion = (int) (number / Math.pow(10, 6)) % 1000;
+        int classThousand = (int) (number / Math.pow(10, 3)) % 1000;
+        int classHundreds = (int) (number % Math.pow(10, 3));
 
         buildString(classTrillion, TRILLION);
         buildString(classBillion, BILLION);

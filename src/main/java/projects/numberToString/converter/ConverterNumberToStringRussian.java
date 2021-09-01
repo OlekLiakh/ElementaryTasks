@@ -1,78 +1,84 @@
 package projects.numberToString.converter;
 
-import projects.numberToString.message.MessagesRussian;
+import main.Message;
+import main.Validator;
 import projects.numberToString.ValidatorNumberToString;
-import projects.numberToString.dictionary.Dictionary;
-import projects.numberToString.dictionary.RussianDictionary;
+import projects.numberToString.converter.dictionary.Dictionary;
+import projects.numberToString.converter.dictionary.RussianDictionary;
+import projects.numberToString.message.MessageRussian;
 
-public class ConverterNumberToStringRussian extends ConverterNumberToString implements MessagesRussian {
+public class ConverterNumberToStringRussian extends ConverterNumberToString {
 
+    private Validator<Long> validator = new ValidatorNumberToString();
     private Dictionary dictionary = new RussianDictionary();
-    private ValidatorNumberToString validator = new ValidatorNumberToString();
+    private MessageRussian message = new MessageRussian();
+    private String result;
 
     public ConverterNumberToStringRussian() {
-        super();
     }
 
     @Override
-    public String convertNumberToString(long number) throws IllegalArgumentException{
-        if(!validator.isDataValid(number)){
-            throw new IllegalArgumentException (INCORRECT_VALUE);
+    public String convertNumberToString(long number) throws IllegalArgumentException {
+        if (!validator.isDataValid(number)) {
+            throw new IllegalArgumentException(message.getOUT_OF_RANGE());
         }
-        if(number==0){
+        if (number == 0) {
             return dictionary.getString(0);
         }
         StringBuilder stringBuilder = new StringBuilder();
         if (number < 0) {
-            stringBuilder.append(MINUS).append(" ");
+            stringBuilder.append(message.getMINUS()).append(" ");
             number = Math.abs(number);
         }
-        int classTrillion = (int) (number / Math.pow(10, 12)); //0
-        int classBillion = (int) (number / Math.pow(10, 9) % 1000); //0
-        int classMillion = (int) (number / Math.pow(10, 6) % 1000); //110
-        int classThousand = (int) (number / Math.pow(10, 3) % 1000); //010
-        int classHundreds = (int) (number % Math.pow(10, 3)); //101
+        int classTrillion = (int) (number / Math.pow(10, 12));
+        int classBillion = (int) (number / Math.pow(10, 9) % 1000);
+        int classMillion = (int) (number / Math.pow(10, 6) % 1000);
+        int classThousand = (int) (number / Math.pow(10, 3) % 1000);
+        int classHundreds = (int) (number % Math.pow(10, 3));
 
-        stringBuilder.append(buildString(classTrillion, TRILLION));
-        stringBuilder.append(buildString(classBillion, BILLION));
-        stringBuilder.append(buildString(classMillion, MILLION));
+        stringBuilder.append(buildString(classTrillion, message.getTRILLION()));
+        stringBuilder.append(buildString(classBillion, message.getBILLION()));
+        stringBuilder.append(buildString(classMillion, message.getMILLION()));
         stringBuilder.append(buildStringThousand(classThousand));
-        stringBuilder.append(buildString(classHundreds));
+        stringBuilder.append(buildStringForThreeDigitNumber(classHundreds));
 
-        if (stringBuilder.charAt(stringBuilder.length()-1)==' '){
-            stringBuilder.deleteCharAt(stringBuilder.length()-1);
-        }
-        return stringBuilder.toString();
+        return stringBuilder.toString().trim();
     }
 
     private String buildString(int treeDigitNumber, String numberClass) {
         StringBuilder stringBuilder = new StringBuilder();
         if (treeDigitNumber != 0) {
-            stringBuilder.append(buildString(treeDigitNumber));
-            if (treeDigitNumber % 10 == 1) {
-                if (treeDigitNumber % 100 != 11) {
-                    stringBuilder.append(" ").append(numberClass);
-                } else {
-                    stringBuilder.append(" ").append(numberClass).append("ов");
-                }
-            } else if (treeDigitNumber % 10 == 2 || treeDigitNumber % 10 == 3 || treeDigitNumber % 10 == 4) {
-                if (treeDigitNumber % 100 == 12 || treeDigitNumber % 100 == 13 || treeDigitNumber % 100 == 14) {
-                    stringBuilder.append(" ").append(numberClass).append("ов");
-                } else {
-                    stringBuilder.append(" ").append(numberClass).append("а");
-                }
+            stringBuilder.append(buildStringForThreeDigitNumber(treeDigitNumber));
+            stringBuilder.append(buildNumberClassNameWithEnding(treeDigitNumber, numberClass));
+        }
+        return stringBuilder.toString();
+    }
+
+    private String buildNumberClassNameWithEnding(int treeDigitNumber, String numberClass) {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (treeDigitNumber % 10 == 1) {
+            if (treeDigitNumber % 100 != 11) {
+                stringBuilder.append(" ").append(numberClass);
             } else {
                 stringBuilder.append(" ").append(numberClass).append("ов");
             }
-            stringBuilder.append(" ");
+        } else if (treeDigitNumber % 10 == 2 || treeDigitNumber % 10 == 3 || treeDigitNumber % 10 == 4) {
+            if (treeDigitNumber % 100 == 12 || treeDigitNumber % 100 == 13 || treeDigitNumber % 100 == 14) {
+                stringBuilder.append(" ").append(numberClass).append("ов");
+            } else {
+                stringBuilder.append(" ").append(numberClass).append("а");
+            }
+        } else {
+            stringBuilder.append(" ").append(numberClass).append("ов");
         }
+        stringBuilder.append(" ");
         return stringBuilder.toString();
     }
 
     private String buildStringThousand(int treeDigitNumber) {
         StringBuilder stringBuilder = new StringBuilder();
         if (treeDigitNumber != 0) {
-            stringBuilder.append(buildString(treeDigitNumber));
+            stringBuilder.append(buildStringForThreeDigitNumber(treeDigitNumber));
             if (treeDigitNumber % 10 == 1) {
                 if (treeDigitNumber % 100 != 11) {
                     stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length())
@@ -88,10 +94,9 @@ public class ConverterNumberToStringRussian extends ConverterNumberToString impl
                     } else {
                         stringBuilder.append(" ").append("тыс€чи");
                     }
+                } else {
+                    stringBuilder.append(" ").append("тыс€ч");
                 }
-//                else {
-//                    stringBuilder.append(" ").append("тыс€ч");
-//                }
             } else {
                 stringBuilder.append(" ").append("тыс€ч");
             }
@@ -100,10 +105,10 @@ public class ConverterNumberToStringRussian extends ConverterNumberToString impl
         return stringBuilder.toString();
     }
 
-    private String buildString(int treeDigitNumber) {
+    private String buildStringForThreeDigitNumber(int treeDigitNumber) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(convertHundreds(treeDigitNumber));
-        if(treeDigitNumber / 100!=0 && treeDigitNumber % 100!=0){
+        if (treeDigitNumber / 100 != 0 && treeDigitNumber % 100 != 0) {
             stringBuilder.append(" ");
         }
         stringBuilder.append(convertTensAndUnits(treeDigitNumber));
