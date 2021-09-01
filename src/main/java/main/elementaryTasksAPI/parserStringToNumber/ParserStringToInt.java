@@ -1,4 +1,4 @@
-package main.parserStringToNumber;
+package main.elementaryTasksAPI.parserStringToNumber;
 
 public class ParserStringToInt extends ParserStringToNumber<Integer> {
 

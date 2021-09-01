@@ -1,10 +1,10 @@
 package projects.numberToString;
 
-import main.RunnerApplication;
+import main.elementaryTasksAPI.RunnerApplicationFromConsole;
 
 public class Main {
     public static void main(String[] args) {
-        RunnerApplication runner = new RunnerNumberToStringFromConsole(args);
+        RunnerApplicationFromConsole runner = new RunnerNumberToStringFromConsole(args);
         runner.runApplication();
     }
 }

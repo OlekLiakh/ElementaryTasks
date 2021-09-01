@@ -1,10 +1,10 @@
 package projects.fibonacciSequence;
 
-import main.RunnerApplication;
+import main.elementaryTasksAPI.RunnerApplicationFromConsole;
 
 public class Main {
     public static void main(String[] args) {
-        RunnerApplication runner = new RunnerFibonacciSequenceFromConsole(args);
+        RunnerApplicationFromConsole runner = new RunnerFibonacciSequenceFromConsole(args);
         runner.runApplication();
     }
 }

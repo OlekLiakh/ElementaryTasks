@@ -1,6 +1,6 @@
 package projects.fibonacciSequence;
 
-import main.Message;
+import main.elementaryTasksAPI.Message;
 
 public class MessageFibonacciSequence extends Message {
     private final String ENTER_VALUES = "To display a sequence of Fibonacci numbers, enter a range \n" +

@@ -1,13 +1,13 @@
 package projects.fibonacciSequence;
 
-import main.RunnerApplication;
-import main.inputOutput.input.InputDataFromConsole;
-import main.inputOutput.output.OutputDataToConsole;
+import main.elementaryTasksAPI.RunnerApplicationFromConsole;
+import main.elementaryTasksAPI.inputOutput.input.InputDataFromConsole;
+import main.elementaryTasksAPI.inputOutput.output.OutputDataToConsole;
 
-public class RunnerFibonacciSequenceFromConsole extends RunnerApplication{
+public class RunnerFibonacciSequenceFromConsole extends RunnerApplicationFromConsole {
 
     public RunnerFibonacciSequenceFromConsole(String[] args){
-        super(args, new FibonacciSequenceApplication(),
+        super(args, new FibonacciSequenceApplicationFromConsole(),
                 new GetParametersFibonacciSequence(new InputDataFromConsole()),
                 new OutputDataToConsole());
     }

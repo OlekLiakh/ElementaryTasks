@@ -1,15 +1,15 @@
 package projects.fibonacciSequence;
 
-import main.Application;
-import main.parserStringToNumber.ParserStringToLong;
+import main.elementaryTasksAPI.ApplicationFromConsole;
+import main.elementaryTasksAPI.parserStringToNumber.ParserStringToLong;
 
 
-public class FibonacciSequenceApplication extends Application {
+public class FibonacciSequenceApplicationFromConsole extends ApplicationFromConsole {
 
     private long [] fibonacciSequenceRange = new long [2];
     private MessageFibonacciSequence message = new MessageFibonacciSequence();
 
-    public FibonacciSequenceApplication() {
+    public FibonacciSequenceApplicationFromConsole() {
         super(new ParserStringToLong(), new MessageFibonacciSequence());
     }
 

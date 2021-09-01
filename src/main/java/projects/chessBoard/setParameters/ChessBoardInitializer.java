@@ -1,10 +1,10 @@
 package projects.chessBoard.setParameters;
 
-import main.inputOutput.input.InputDataFromConsole;
+import main.elementaryTasksAPI.inputOutput.input.InputDataFromConsole;
 import projects.chessBoard.message.MessageChessBoard;
 import projects.chessBoard.modelBoard.ChessBoard;
 import projects.chessBoard.setParameters.validator.ValidatorChessBoard;
-import main.Validator;
+import main.elementaryTasksAPI.Validator;
 
 import java.io.IOException;
 

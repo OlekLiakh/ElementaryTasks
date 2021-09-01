@@ -1,16 +1,16 @@
-package main;
+package main.elementaryTasksAPI;
 
-import main.parserStringToNumber.ParserStringToNumber;
+import main.elementaryTasksAPI.parserStringToNumber.ParserStringToNumber;
 
-public abstract class Application  {
+public abstract class ApplicationFromConsole {
 
     protected ParserStringToNumber<? extends Number> parser;
     protected Message message;
 
-    public Application() {
+    public ApplicationFromConsole() {
     }
 
-    public Application(ParserStringToNumber<? extends Number> parser, Message message) {
+    public ApplicationFromConsole(ParserStringToNumber<? extends Number> parser, Message message) {
         this.parser = parser;
         this.message = message;
     }

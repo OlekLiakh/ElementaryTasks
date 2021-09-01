@@ -1,7 +1,7 @@
 package projects.fibonacciSequence;
 
-import main.GetParameters;
-import main.inputOutput.input.InputData;
+import main.elementaryTasksAPI.GetParameters;
+import main.elementaryTasksAPI.inputOutput.input.InputData;
 
 import java.io.IOException;
 

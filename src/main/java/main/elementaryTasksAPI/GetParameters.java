@@ -1,6 +1,6 @@
-package main;
+package main.elementaryTasksAPI;
 
-import main.inputOutput.input.InputData;
+import main.elementaryTasksAPI.inputOutput.input.InputData;
 
 import java.io.IOException;
 

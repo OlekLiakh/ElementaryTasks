@@ -1,7 +1,7 @@
 package projects.fibonacciSequence;
 
-import main.Message;
-import main.Validator;
+import main.elementaryTasksAPI.Message;
+import main.elementaryTasksAPI.Validator;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

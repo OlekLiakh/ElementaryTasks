@@ -1,6 +1,6 @@
 package projects.numberToString.message;
 
-import main.Message;
+import main.elementaryTasksAPI.Message;
 
 public class MessageRussian extends Message {
     private final String ENTER_VALUES = "¬ведите число";
