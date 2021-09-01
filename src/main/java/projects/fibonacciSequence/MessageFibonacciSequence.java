@@ -1,8 +1,6 @@
-package projects.numberToString.message;
+package projects.fibonacciSequence;
 
-import main.Messege;
-
-public class MessegeRussian extends Messege {
+public class Messege extends main.Messege {
     private final String ENTER_VALUES = "¬ведите число";
     private final String INPUT_SCHEME = "„исло должно быть в диапазоне +/-квадрилион";
     private final String INCORRECT_VALUE = "¬ведены неверные данные";
