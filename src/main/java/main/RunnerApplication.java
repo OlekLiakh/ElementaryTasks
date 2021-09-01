@@ -1,51 +1,59 @@
 package main;
 
-import inputParameters.EnterDataFromConsole;
-import main.parserStringToNumber.ParserStringToNumber;
+import main.inputOutput.output.OutputData;
+
+import java.io.IOException;
 
 public abstract class RunnerApplication {
 
-    protected String[] args;
-    protected String enteredValue;
-    protected boolean isParametersFromArgumentsValid = true;
-    protected boolean isParserNeed;
-    GetParameters getParameters;
-    EnterDataFromConsole input = new EnterDataFromConsole();
-    Application app;
+    private GetParameters getParameters;
+    private Application app;
+    private OutputData output;
+    private Message message;
+    private String[] args;
+    private String enteredValue;
+    private boolean isParametersFromArgumentsValid = true;
 
-//    TODO separate methods to own class GetParameters
-    protected abstract void getParametersFromArguments();
-    protected abstract void getArguments();
 
-    public RunnerApplication(String[] args, Application app) {
+    public RunnerApplication(String[] args, Application app,
+                             GetParameters getParameters, OutputData output) {
         this.args = args;
         this.app = app;
-        isParserNeed = false;
-    }
-    public RunnerApplication(String[] args, Application app, ParserStringToNumber parserParameters) {
-        this.args = args;
-        this.app = app;
-        isParserNeed = true;
+        this.getParameters = getParameters;
+        this.output = output;
     }
 
     public void runApplication() {
+        message = app.getMessage();
+
         boolean isContinue = true;
         do {
             try {
-                if (args.length == 0 || !isParametersFromArgumentsValid) {
-                    getArguments();
+                if (args.length != 0 || isParametersFromArgumentsValid) {
+                    enteredValue = getParameters.getParametersFromStartArguments(args);
+                    if (enteredValue == null) {
+                        isParametersFromArgumentsValid = false;
+                        continue;
+                    }
                 } else {
-                    getParametersFromArguments();
+                    output.outputData(message.getENTER_VALUES());
+                    output.outputData(message.getINPUT_SCHEME());
+                    enteredValue = getParameters.getArguments();
                 }
                 String result = app.execute(enteredValue);
-//                outPut.outputMessage(result);
-                System.out.println(result);
+                output.outputData(result);
                 isContinue = false;
-            } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
-                isParametersFromArgumentsValid=false;
-//                outPut.outputMessage(exception.getMessage());
+            } catch (IllegalArgumentException iae) {
+                isParametersFromArgumentsValid = false;
+                output.outputData(message.getINCORRECT_VALUE());
+                output.outputData(iae.getMessage());
+            } catch (IOException ioe){
+                output.outputData(message.getINCORRECT_VALUE());
+                output.outputData(ioe.getMessage());
             }
+//            catch (Exception exception){
+//                output.outputData(message.getEXCEPTION());
+//            }
         } while (isContinue);
     }
 }

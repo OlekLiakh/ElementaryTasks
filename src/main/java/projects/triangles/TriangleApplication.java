@@ -1,27 +1,44 @@
 package projects.triangles;
 
-import inputParameters.EnterDataFromConsole;
+import main.inputOutput.input.InputDataFromConsole;
+
+import java.io.IOException;
 
 public class TriangleApplication implements Message{
-    protected EnterDataFromConsole input = new EnterDataFromConsole();
+    protected InputDataFromConsole input = new InputDataFromConsole();
     private final TriangleStorage storage = new TriangleStorage();
 
+//    TODO change method
     public void execute(){
         boolean isContinue = true;
         while (isContinue){
-            String enteredString = input.getParameters(ENTER_PARAMETERS, INPUT_TEMPLATE);
-            ParserStringToTriangle parser = new ParserStringToTriangle(enteredString);
-            Triangle triangle = parser.getTriangle();
-            if (triangle != null) {
-                storage.addTriangle(triangle);
+            try {
+                System.out.println(ENTER_PARAMETERS);
+                System.out.println(INPUT_TEMPLATE);
+                String enteredString = input.getParameters();
+                ParserStringToTriangle parser = new ParserStringToTriangle(enteredString);
+                Triangle triangle = parser.getTriangle();
+                if (triangle != null) {
+                    storage.addTriangle(triangle);
+                }
+                isContinue = isContinue();
+            } catch (IOException exception) {
+                exception.printStackTrace();
             }
-            isContinue = isContinue();
         }
         System.out.println(storage.toString());
     }
+    //    TODO change method
     private boolean isContinue() {
-        String response = input.getParameters("", QUESTION);
-        return response.equalsIgnoreCase("yes")
-                || response.equalsIgnoreCase("y");
+        try {
+            System.out.println(ENTER_PARAMETERS);
+            System.out.println(INPUT_TEMPLATE);
+            String response = input.getParameters();
+            return response.equalsIgnoreCase("yes")
+                    || response.equalsIgnoreCase("y");
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+        return false;
     }
 }

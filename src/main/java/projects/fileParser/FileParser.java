@@ -1,7 +1,7 @@
 package projects.fileParser;
 
-import inputParameters.EnterDataFromConsole;
-import inputParameters.DataEnterFromFile;
+import main.inputOutput.input.InputDataFromConsole;
+import main.inputOutput.input.InputDataFromFile;
 
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -10,7 +10,7 @@ import java.io.IOException;
 public class FileParser implements MessageFileParser{
 
     private String[] args;
-    private EnterDataFromConsole input = new EnterDataFromConsole();
+    private InputDataFromConsole input = new InputDataFromConsole();
 
     public FileParser(String[] args) {
         this.args = args;
@@ -40,7 +40,7 @@ public class FileParser implements MessageFileParser{
     }
 
     private int getCount(String path, String stringToCount) {
-        DataEnterFromFile dataEnterFromFile = new DataEnterFromFile(path);
+        InputDataFromFile dataEnterFromFile = new InputDataFromFile(path);
         String textFromFile = "";
         try {
             textFromFile = dataEnterFromFile.getParameters();
@@ -55,7 +55,7 @@ public class FileParser implements MessageFileParser{
 
     private void rewriteStringInFile(String path, String searchString, String replaceString) {
         try {
-            DataEnterFromFile dataEnterFromFile = new DataEnterFromFile(path);
+            InputDataFromFile dataEnterFromFile = new InputDataFromFile(path);
             String dataFromFile = dataEnterFromFile.getParameters();
             String changedString = dataFromFile.replaceAll(searchString, replaceString);
             FileWriter writer = new FileWriter(path, false);
@@ -67,10 +67,19 @@ public class FileParser implements MessageFileParser{
             exception.printStackTrace();
         }
     }
-
+//TODO change method
     private String[] getParameters() {
-        String enteredParameters = input.getParameters(ENTER_VALUES, INPUT_SCHEME);
-        args = enteredParameters.split(" ");
+        System.out.println(ENTER_VALUES);
+        System.out.println(INPUT_SCHEME);
+        String enteredParameters = "";
+        String [] args = {"",""};
+        try{
+            enteredParameters = input.getParameters();
+            args = enteredParameters.split(" ");
+            return args;
+        } catch (IOException e) {
+            e.getMessage();
+        }
         return args;
     }
 }

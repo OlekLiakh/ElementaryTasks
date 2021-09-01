@@ -1,31 +1,33 @@
 package projects.numberToString.converter;
 
-import projects.numberToString.ValidatorNumberToString;
-import projects.numberToString.converter.dictionary.RussianDictionary;
-import projects.numberToString.message.MessagesRussian;
-import projects.numberToString.converter.dictionary.Dictionary;
+import main.Message;
 import main.Validator;
+import projects.numberToString.ValidatorNumberToString;
+import projects.numberToString.converter.dictionary.Dictionary;
+import projects.numberToString.converter.dictionary.RussianDictionary;
+import projects.numberToString.message.MessageRussian;
 
-public class ConverterNumberToStringRussian extends ConverterNumberToString implements MessagesRussian {
+public class ConverterNumberToStringRussian extends ConverterNumberToString {
 
-    Validator <Long> validator = new ValidatorNumberToString();
+    private Validator<Long> validator = new ValidatorNumberToString();
     private Dictionary dictionary = new RussianDictionary();
+    private MessageRussian message = new MessageRussian();
     private String result;
 
     public ConverterNumberToStringRussian() {
     }
 
     @Override
-    public String convertNumberToString(long number) throws IllegalArgumentException{
-        if(!validator.isDataValid(number)){
-            throw new IllegalArgumentException (INCORRECT_VALUE);
+    public String convertNumberToString(long number) throws IllegalArgumentException {
+        if (!validator.isDataValid(number)) {
+            throw new IllegalArgumentException(message.getOUT_OF_RANGE());
         }
-        if(number==0){
+        if (number == 0) {
             return dictionary.getString(0);
         }
         StringBuilder stringBuilder = new StringBuilder();
         if (number < 0) {
-            stringBuilder.append(MINUS).append(" ");
+            stringBuilder.append(message.getMINUS()).append(" ");
             number = Math.abs(number);
         }
         int classTrillion = (int) (number / Math.pow(10, 12));
@@ -34,9 +36,9 @@ public class ConverterNumberToStringRussian extends ConverterNumberToString impl
         int classThousand = (int) (number / Math.pow(10, 3) % 1000);
         int classHundreds = (int) (number % Math.pow(10, 3));
 
-        stringBuilder.append(buildString(classTrillion, TRILLION));
-        stringBuilder.append(buildString(classBillion, BILLION));
-        stringBuilder.append(buildString(classMillion, MILLION));
+        stringBuilder.append(buildString(classTrillion, message.getTRILLION()));
+        stringBuilder.append(buildString(classBillion, message.getBILLION()));
+        stringBuilder.append(buildString(classMillion, message.getMILLION()));
         stringBuilder.append(buildStringThousand(classThousand));
         stringBuilder.append(buildStringForThreeDigitNumber(classHundreds));
 
@@ -92,8 +94,7 @@ public class ConverterNumberToStringRussian extends ConverterNumberToString impl
                     } else {
                         stringBuilder.append(" ").append("тыс€чи");
                     }
-                }
-                else {
+                } else {
                     stringBuilder.append(" ").append("тыс€ч");
                 }
             } else {
@@ -107,7 +108,7 @@ public class ConverterNumberToStringRussian extends ConverterNumberToString impl
     private String buildStringForThreeDigitNumber(int treeDigitNumber) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(convertHundreds(treeDigitNumber));
-        if(treeDigitNumber / 100!=0 && treeDigitNumber % 100!=0){
+        if (treeDigitNumber / 100 != 0 && treeDigitNumber % 100 != 0) {
             stringBuilder.append(" ");
         }
         stringBuilder.append(convertTensAndUnits(treeDigitNumber));

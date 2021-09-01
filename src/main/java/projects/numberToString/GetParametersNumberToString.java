@@ -1,29 +1,30 @@
 package projects.numberToString;
 
-import inputParameters.EnterDataFromConsole;
-import main.Application;
-import main.RunnerApplication;
-import projects.numberToString.message.MessagesRussian;
+import main.GetParameters;
+import main.inputOutput.input.InputData;
 
-public class GetParametersNumberToString extends RunnerApplication implements MessagesRussian {
+import java.io.IOException;
 
-    EnterDataFromConsole input = new EnterDataFromConsole();
+public class GetParametersNumberToString extends GetParameters {
 
-    public GetParametersNumberToString(String[] args, Application app) {
-        super(args, app);
+    private String enteredValue;
+
+    public GetParametersNumberToString(InputData input) {
+        super(input);
     }
 
     @Override
-    protected void getParametersFromArguments() {
-        if(args.length == 1){
+    protected String getParametersFromStartArguments(String[] args) {
+
+        if (args.length == 1) {
             enteredValue = args[0];
-        } else isParametersFromArgumentsValid = false;
+        }
+        return enteredValue;
     }
 
     @Override
-    protected void getArguments() {
-        enteredValue = input.getParameters(ENTER_VALUES, INPUT_SCHEME);
+    protected String getArguments() throws IOException {
+        enteredValue = input.getParameters();
+        return enteredValue;
     }
-
-
 }

@@ -1,7 +1,8 @@
 package projects.triangles;
 
-import inputParameters.EnterDataFromConsole;
+import main.inputOutput.input.InputDataFromConsole;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,7 +10,7 @@ import java.util.stream.Stream;
 
 public class ParserStringToTriangle implements Message {
 
-    protected EnterDataFromConsole input = new EnterDataFromConsole();
+    protected InputDataFromConsole input = new InputDataFromConsole();
     private String enteredString;
 
     public ParserStringToTriangle(String enteredString) {
@@ -42,7 +43,14 @@ public class ParserStringToTriangle implements Message {
 
     private void enterTriangleValues() {
         System.out.println(WRONG_INPUT_PARAMETERS);
-        enteredString = input.getParameters(ENTER_PARAMETERS, INPUT_TEMPLATE);
+//TODO change method
+        System.out.println(ENTER_PARAMETERS);
+        System.out.println(INPUT_TEMPLATE);
+        try {
+            enteredString = input.getParameters();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
     }
 
     private List<String> splitEnteredParameters() {
@@ -68,15 +76,17 @@ public class ParserStringToTriangle implements Message {
             try {
                 double parsedValue = Double.parseDouble(enteredValue);
                 if (parsedValue<=0){
-                    throw new NumberFormatException();
+                    System.out.println(WRONG_SIDE);
+                    String wrongSide = "Entered value: "+enteredValue+ " for side number " + sideNumber+" is incorrect\n";
+                    System.out.print(wrongSide);
+                    System.out.println(SIDE_FORMAT_RULE);
+                    System.out.println(ENTER_PARAMETERS);
+                    System.out.println(INPUT_TEMPLATE);
+                    enteredValue = input.getParameters();
                 }
                 return parsedValue;
             } catch (NumberFormatException nfe) {
-                System.out.println(WRONG_SIDE);
-                String wrongSide = "Entered value: "+enteredValue+ " for side number " + sideNumber+" is incorrect\n";
-                System.out.print(wrongSide);
-                System.out.println(SIDE_FORMAT_RULE);
-                enteredValue = input.getParameters(ENTER_PARAMETERS, INPUT_TEMPLATE);
+                System.out.println(nfe.getMessage());
             } catch (Exception e) {
                 e.printStackTrace();
             }

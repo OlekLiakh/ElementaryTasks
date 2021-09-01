@@ -1,13 +1,14 @@
 package projects.numberSequence;
 
-import inputParameters.EnterDataFromConsole;
+import main.inputOutput.input.InputDataFromConsole;
 
+import java.io.IOException;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class NumberSequence implements MessageNumberSequence {
 
-    EnterDataFromConsole input = new EnterDataFromConsole();
+    InputDataFromConsole input = new InputDataFromConsole();
     String[] inputtedParameters;
     int startNumber = 1;
     long sequenceLength;
@@ -16,12 +17,18 @@ public class NumberSequence implements MessageNumberSequence {
     public NumberSequence(String[] args) {
         inputtedParameters = args;
     }
-
+// TODO change method
     public boolean setInputtedParameters() {
         boolean isValid = false;
         while(!isValid) {
-            inputtedParameters = input.getParameters(ENTER_VALUES, INPUT_SCHEME).split(" ");
-            isValid = validateParameters(inputtedParameters);
+            try {
+                System.out.println(ENTER_VALUES);
+                System.out.println(INPUT_SCHEME);
+                inputtedParameters = input.getParameters().split(" ");
+                isValid = validateParameters(inputtedParameters);
+            } catch(IOException e){
+                e.getMessage();
+            }
         }
         return true;
     }

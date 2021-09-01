@@ -1,16 +1,18 @@
 package projects.numberToString;
 
 import main.Application;
-import main.parserStringToNumber.ParserStringToNumber;
+import main.parserStringToNumber.ParserStringToLong;
 import projects.numberToString.converter.ConverterNumberToString;
 import projects.numberToString.converter.ConverterNumberToStringRussian;
+import projects.numberToString.message.MessageRussian;
+
 
 public class NumberToStringApplication extends Application {
 
     private Long number;
+    public NumberToStringApplication(){
+        super(new ParserStringToLong(), new MessageRussian());
 
-    public NumberToStringApplication(ParserStringToNumber<Long> parser){
-        super(parser);
     }
 
     @Override
