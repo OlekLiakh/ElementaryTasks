@@ -5,7 +5,7 @@ import projects.numberToString.converter.ConverterNumberToStringRussian;
 
 import static org.testng.Assert.assertEquals;
 
-public class ConverterNumberToStringRussianTest {
+public class ConverterNumberToStringTest {
     ConverterNumberToStringRussian converter = new ConverterNumberToStringRussian();
 
     @Test(expectedExceptions = {IllegalArgumentException.class})
