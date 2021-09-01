@@ -43,17 +43,13 @@ public abstract class RunnerApplication {
                 String result = app.execute(enteredValue);
                 output.outputData(result);
                 isContinue = false;
-            } catch (IllegalArgumentException iae) {
+            } catch (IllegalArgumentException | IOException exception) {
                 isParametersFromArgumentsValid = false;
                 output.outputData(message.getINCORRECT_VALUE());
-                output.outputData(iae.getMessage());
-            } catch (IOException ioe){
-                output.outputData(message.getINCORRECT_VALUE());
-                output.outputData(ioe.getMessage());
+                output.outputData(exception.getMessage());
+            } catch (Exception exception) {
+                output.outputData(message.getEXCEPTION());
             }
-//            catch (Exception exception){
-//                output.outputData(message.getEXCEPTION());
-//            }
         } while (isContinue);
     }
 }

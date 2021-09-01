@@ -1,8 +1,8 @@
 package projects.numberToString.message;
 
-import main.Messege;
+import main.Message;
 
-public class MessegeRussian extends Messege {
+public class MessageRussian extends Message {
     private final String ENTER_VALUES = "¬ведите число";
     private final String INPUT_SCHEME = "„исло должно быть в диапазоне +/-квадрилион";
     private final String INCORRECT_VALUE = "¬ведены неверные данные";

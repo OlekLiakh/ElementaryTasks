@@ -1,7 +1,5 @@
 package projects.numberToString.converter.dictionary;
 
-import main.Message;
-
 import java.util.HashMap;
 
 public abstract class Dictionary{

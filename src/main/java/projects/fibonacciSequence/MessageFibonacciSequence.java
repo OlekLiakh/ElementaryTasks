@@ -1,15 +1,18 @@
 package projects.fibonacciSequence;
 
-public class Messege extends main.Messege {
-    private final String ENTER_VALUES = "Введите число";
-    private final String INPUT_SCHEME = "Число должно быть в диапазоне +/-квадрилион";
-    private final String INCORRECT_VALUE = "Введены неверные данные";
-    private final String EXCEPTION = "Что-то пошло не так. Мы уже работаем над устранением проблемы.";
+import main.Message;
+
+public class MessageFibonacciSequence extends Message {
+    private final String ENTER_VALUES = "To display a sequence of Fibonacci numbers, enter a range \n" +
+            "or number indicating the maximum number of digits in the sequence numbers.";
+    private final String INPUT_SCHEME = "Range must be entered by scheme: <start number;end number>. \n" +
+            "Start number and end number ranging from 0 to 9 999 999 999. \n" +
+            "Number of digits in in the sequence numbers may be in range within 1 to 10.";
+    private final String INCORRECT_VALUE = "Entered an incorrect value. ";
+    private final String EXCEPTION = "Something went wrong. We are working to fix this.";
     private final String OUT_OF_RANGE = "Число не в пределах диапазоне";
-    private final String MINUS = "минус";
-    private final String TRILLION = "триллион";
-    private final String BILLION = "миллиард";
-    private final String MILLION = "миллион";
+    private final String DELIMITER = ";";
+
 
     @Override
     public String getENTER_VALUES() {
@@ -31,23 +34,11 @@ public class Messege extends main.Messege {
         return EXCEPTION;
     }
 
+    public String getDELIMITER() {
+        return DELIMITER;
+    }
+
     public String getOUT_OF_RANGE() {
         return OUT_OF_RANGE;
-    }
-
-    public String getMINUS() {
-        return MINUS;
-    }
-
-    public String getTRILLION() {
-        return TRILLION;
-    }
-
-    public String getBILLION() {
-        return BILLION;
-    }
-
-    public String getMILLION() {
-        return MILLION;
     }
 }

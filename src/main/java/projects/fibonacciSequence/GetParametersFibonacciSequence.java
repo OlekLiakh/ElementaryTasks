@@ -1,15 +1,16 @@
-package projects.numberToString;
+package projects.fibonacciSequence;
 
 import main.GetParameters;
 import main.inputOutput.input.InputData;
 
 import java.io.IOException;
 
-public class GetParametersNumberToString extends GetParameters{
+public class GetParametersFibonacciSequence extends GetParameters {
 
     private String enteredValue;
+    private MessageFibonacciSequence message;
 
-    public GetParametersNumberToString(InputData input) {
+    public GetParametersFibonacciSequence(InputData input) {
         super(input);
     }
 
@@ -18,7 +19,9 @@ public class GetParametersNumberToString extends GetParameters{
 
         if (args.length == 1) {
             enteredValue = args[0];
-            return enteredValue;
+        }
+        if(args.length==2) {
+            enteredValue = args[0]+message.getDELIMITER()+args[1];
         }
         return enteredValue;
     }

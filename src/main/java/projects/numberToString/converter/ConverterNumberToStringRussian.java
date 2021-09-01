@@ -1,6 +1,5 @@
 package projects.numberToString.converter;
 
-import main.Message;
 import main.Validator;
 import projects.numberToString.ValidatorNumberToString;
 import projects.numberToString.converter.dictionary.Dictionary;

@@ -2,10 +2,9 @@ package main;
 
 import main.parserStringToNumber.ParserStringToNumber;
 
-public abstract class Application {
+public abstract class Application  {
 
     protected ParserStringToNumber<? extends Number> parser;
-
     protected Message message;
 
     public Application() {
@@ -16,9 +15,9 @@ public abstract class Application {
         this.message = message;
     }
 
-    public abstract void parseParameters(String enteredValue) throws IllegalArgumentException;
+    public abstract void parseParameters(String value) throws IllegalArgumentException;
 
-    public abstract String execute(String enteredValue) throws IllegalArgumentException;
+    public abstract String execute(String enteredParameters) throws IllegalArgumentException;
 
     public Message getMessage() {
         return message;

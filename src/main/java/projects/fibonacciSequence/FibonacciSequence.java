@@ -5,10 +5,12 @@ import messages.Messages;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class FibonacciSequence implements Messages {
+public class FibonacciSequence {
 
     private long startRange;
     private long endRange;
+
+    private FibonacciSequence(){}
 
     public FibonacciSequence (long [] rangeSequence){
         if (rangeSequence[0] <= rangeSequence[1]) {
@@ -18,11 +20,6 @@ public class FibonacciSequence implements Messages {
             startRange = rangeSequence[1];
             endRange = rangeSequence[0];
         }
-    }
-
-    public String getFibonacciSequence() {
-        String fibonacciSequence = buildFibonacciSequence(startRange, endRange);
-        return fibonacciSequence;
     }
 
     private String buildFibonacciSequence(long startRange, long endRange) {
@@ -36,6 +33,11 @@ public class FibonacciSequence implements Messages {
         if(fibonacciSequence.length()==0){
             return "There are no Fibonacci numbers in the specified range";
         }
+        return fibonacciSequence;
+    }
+
+    public String getFibonacciSequence() {
+        String fibonacciSequence = buildFibonacciSequence(startRange, endRange);
         return fibonacciSequence;
     }
 }
