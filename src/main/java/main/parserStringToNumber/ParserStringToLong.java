@@ -2,18 +2,9 @@ package main.parserStringToNumber;
 
 public class ParserStringToLong extends ParserStringToNumber<Long> {
 
-    private Long number;
-
     @Override
-    public boolean parseParameters(String paramToParse) throws IllegalArgumentException{
-        number = Long.parseLong(paramToParse);
-        return true;
-    }
-
-    @Override
-    public Long getParsedParameter() {
+    public Long parseParameters(String paramToParse) throws IllegalArgumentException {
+        Long number = Long.parseLong(paramToParse);
         return number;
     }
-
-
 }

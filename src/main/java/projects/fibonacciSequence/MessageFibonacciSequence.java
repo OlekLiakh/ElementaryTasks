@@ -7,7 +7,7 @@ public class MessageFibonacciSequence extends Message {
             "or number indicating the maximum number of digits in the sequence numbers.";
     private final String INPUT_SCHEME = "Range must be entered by scheme: <start number;end number>. \n" +
             "Start number and end number ranging from 0 to 9 999 999 999. \n" +
-            "Number of digits in in the sequence numbers may be in range within 1 to 10.";
+            "Number of digits in the sequence numbers may be in range within 1 to 10.";
     private final String INCORRECT_VALUE = "Entered an incorrect value. ";
     private final String EXCEPTION = "Something went wrong. We are working to fix this.";
     private final String OUT_OF_RANGE = "Число не в пределах диапазоне";

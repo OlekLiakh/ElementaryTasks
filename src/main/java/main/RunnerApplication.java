@@ -46,9 +46,8 @@ public abstract class RunnerApplication {
             } catch (IllegalArgumentException | IOException exception) {
                 isParametersFromArgumentsValid = false;
                 output.outputData(message.getINCORRECT_VALUE());
-                output.outputData(exception.getMessage());
-            } catch (Exception exception) {
-                output.outputData(message.getEXCEPTION());
+//            } catch (Exception exception) {
+//                output.outputData(message.getEXCEPTION());
             }
         } while (isContinue);
     }

@@ -4,18 +4,14 @@ import main.Validator;
 
 import java.util.function.Predicate;
 
-public class ValidatorFibonacci implements Validator<Integer> {
+public class ValidatorFibonacci implements Validator<Long> {
 
     private final int limitDigitsInNumber = 10;
-    private final Predicate<Integer> moreThenZero = n->n>0;
-    private final Predicate<Integer> lessThenLimit = numberDigitsInNumber->numberDigitsInNumber<=limitDigitsInNumber;
-    private final Predicate<Integer> lessThenMaxNumber = n->n<Math.pow(10,limitDigitsInNumber+1);
+    private final Predicate<Long> moreThenZero = n -> n >= 0;
+    private final Predicate<Long> lessThenMaxNumber = n -> n < Math.pow(10, limitDigitsInNumber + 1);
 
-    public boolean isDataValid(Integer value){
+    public boolean isDataValid(Long value) {
         return validation(value, moreThenZero.and(lessThenMaxNumber));
     }
 
-    public boolean isNumberForRangeValid(Integer value){
-        return validation(value, moreThenZero.and(lessThenLimit));
-    }
 }

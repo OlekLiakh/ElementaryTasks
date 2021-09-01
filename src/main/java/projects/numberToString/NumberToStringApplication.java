@@ -26,8 +26,7 @@ public class NumberToStringApplication extends Application {
 
     @Override
     public void parseParameters(String enteredValue) throws IllegalArgumentException {
-        parser.parseParameters(enteredValue);
-        number = (Long) parser.getParsedParameter();
+        number = (Long) parser.parseParameters(enteredValue);
     }
 
 }

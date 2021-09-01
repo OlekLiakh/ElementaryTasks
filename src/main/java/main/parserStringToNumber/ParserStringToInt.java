@@ -2,18 +2,10 @@ package main.parserStringToNumber;
 
 public class ParserStringToInt extends ParserStringToNumber<Integer> {
 
-    private Integer number;
-
     @Override
-    public boolean parseParameters(String paramToParse) throws IllegalArgumentException{
-        number = Integer.parseInt(paramToParse);
-        return true;
-    }
-
-    @Override
-    public Integer getParsedParameter() {
+    public Integer parseParameters(String paramToParse) throws IllegalArgumentException {
+        Integer number = Integer.parseInt(paramToParse);
         return number;
     }
-
 
 }
